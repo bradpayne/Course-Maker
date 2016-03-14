@@ -24,3 +24,5 @@ module CourseCatalog
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+config.assets.initialize_on_precompile = false
