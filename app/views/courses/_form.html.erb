@@ -1,0 +1,57 @@
+<%= form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id %><br>
+    <%= f.text_field :id %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :term %><br>
+    <%= f.text_field :term %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :subjects %><br>
+    <%= f.text_field :subjects %>
+  </div>
+  <div class="field">
+    <%= f.label :continuity_id %><br>
+    <%= f.text_field :continuity_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :credits %><br>
+    <%= f.text_field :credits %>
+  </div>
+  <div class="field">
+    <%= f.label :indepedent_study %><br>
+    <%= f.check_box :indepedent_study %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
