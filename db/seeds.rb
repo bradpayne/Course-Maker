@@ -17,7 +17,7 @@ require 'json'
 #end
 
 
-User.create(name: "Brad", password_digest: '12345678', email: 'bradleyp42@gmail.com')
+User.create(name: "Brad", password: '12345678', email: 'bradleyp42@gmail.com')
 
 #records = JSON.parse(File.read('Files_For_PA/code/instructor.json'))
 #records.each do |record|

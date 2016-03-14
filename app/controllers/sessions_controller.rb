@@ -9,10 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    puts 'test test test'
-    puts params[:session].keys
-    puts 'test test test'
-    if user #&& user.authenticate(params[:session][:password])
+    if user  && user.authenticate(params[:session][:password])
       log_in user
       redirect_to user
     else
