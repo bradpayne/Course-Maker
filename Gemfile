@@ -28,6 +28,8 @@ gem 'sprockets-rails'
 gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'json'
+gem 'will_paginate', '3.1.0'
+
 
 #for heroku 
   gem 'rails_12factor', group: :production

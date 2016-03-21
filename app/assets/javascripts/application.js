@@ -16,3 +16,14 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+  $("#courses th a, #courses .pagination a").live("click", function() {
+    $.getScript(this.href);
+    return false;
+  });
+  $("#courses_search input").keyup(function() {
+    $.get($("#courses_search").attr("action"), $("#courses_search").serialize(), null, "script");
+    return false;
+  });
+});

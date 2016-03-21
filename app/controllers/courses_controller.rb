@@ -1,12 +1,17 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
   end
 
+  def search 
+    @courses = Course.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
+  end 
   # GET /courses/1
   # GET /courses/1.json
   def show
@@ -61,6 +66,12 @@ class CoursesController < ApplicationController
     end
   end
 
+    def enroll
+      set_course
+      current_user.courses << @course
+      redirect_to @course, notice: 'You joined this class!'
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course
@@ -70,5 +81,13 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:id, :comment, :term, :code, :subjects, :continuity_id, :name, :description, :credits, :indepedent_study)
+    end
+
+    def sort_column
+      Course.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :enrollments
   resources :instructors
   resources :subjects
   resources :courses
@@ -12,6 +13,14 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+
+  resources :courses do
+     resources :enrollments
+  end
+
+  get 'search' => 'courses#search'
+  post 'courses/:id/enroll' => 'courses#enroll', as: 'enroll'
 
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,14 +1,49 @@
 <p id="notice"><%= notice %></p>
+<div> 
+	<div class="sidebar" style="background-color:green;">
+	<p>
+  		<strong>Name:</strong>
+ 		<%= @user.name %>
+	</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+	<p>
+		<strong>Email:</strong>
+   		<%= @user.email %>
+	</p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
+    <div class="center">
+		<%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-mini btn-info' %> 
+	</div> 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+</div>
+
+
+<div class="content">
+    <h1>My Courses </h1>
+    
+    <table class="table table-bordered table-striped">
+	 <thead>
+	    <tr>
+	      <th>Id</th>
+	      <th>Code</th>
+	      <th>Name</th>
+	      <th colspan="3"></th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @user.courses.each do |course| %>
+	      <tr>
+	        <td><%= course.id %></td>
+	        <td><%= course.code %></td>
+	        <td><%= course.name %></td>
+	        <td>           
+	          <%= link_to 'Edit', edit_course_path(course), :class => 'btn btn-mini btn-info' %>
+	          <%= link_to 'Drop', course_path(course), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+	        </td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	 </table>
+  </div>
+</div>
