@@ -11,7 +11,13 @@ class CoursesController < ApplicationController
 
   def search 
     @courses = Course.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
+    @subjects = Array.new(10) { "" }
+
+    #@subjects = Subjects.all.map {|c| [c.name, c.id]}
+    #@subject = [["any", 0]] + @subjects
+    #@courses = nil
   end 
+
   # GET /courses/1
   # GET /courses/1.json
   def show

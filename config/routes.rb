@@ -16,10 +16,12 @@ Rails.application.routes.draw do
 
 
   resources :courses do
-     resources :enrollments
+     resources :enrollments, :subjects
   end
 
   get 'search' => 'courses#search'
+  get 'do_search' => 'courses#do_search'
+
   post 'courses/:id/enroll' => 'courses#enroll', as: 'enroll'
 
   
